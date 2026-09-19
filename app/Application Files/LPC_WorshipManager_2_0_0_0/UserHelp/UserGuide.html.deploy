@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>LPC Worship Manager — User Guide</title>
+  <style>
+    :root{--navy:#142236;--blue:#2e6fb7;--ink:#172235;--muted:#607086;--line:#d9e1e9;--canvas:#f4f7fa;--green:#16815c}
+    *{box-sizing:border-box} body{margin:0;font:16px/1.58 "Segoe UI",Arial,sans-serif;color:var(--ink);background:var(--canvas)}
+    header{background:var(--navy);color:white;padding:42px max(24px,calc((100% - 980px)/2))} header h1{margin:0 0 5px;font-size:32px} header p{margin:0;color:#bfd0e2}
+    main{max-width:980px;margin:28px auto;padding:0 22px 60px} section{background:white;border:1px solid var(--line);border-radius:9px;padding:24px 28px;margin:18px 0}
+    h2{color:var(--navy);margin-top:0} h3{color:var(--blue);margin-bottom:4px}.note{border-left:4px solid var(--blue);background:#eef5fc;padding:12px 15px;border-radius:4px}
+    .safe{border-left-color:var(--green);background:#eef9f5} li{margin:.38rem 0} code{color:#174c80;background:#eef2f6;padding:2px 5px;border-radius:3px}
+  </style>
+</head>
+<body>
+<header><h1>LPC Worship Manager</h1><p>Legacy Pentecostal Church • Master songs, dated service plans, leader cues, and presentation export</p></header>
+<main>
+  <section>
+    <h2>Start here</h2>
+    <ol>
+      <li>Open <strong>Settings</strong> and select the locally synchronized shared <strong>SongLyrics</strong> folder.</li>
+      <li>Use <strong>Reload library</strong> after Dropbox has finished receiving another person’s changes. This rereads the local folder; it does not control Dropbox itself.</li>
+    </ol>
+    <p class="note">Allow Dropbox to finish syncing before two computers edit the same service. Dropbox provides shared access, but it does not merge simultaneous plan edits like a database.</p>
+  </section>
+  <section>
+    <h2>1. Prepare the song library</h2>
+    <ol>
+      <li>Open <strong>Song Library</strong>. Search or filter the list.</li>
+      <li>Select a song to review its master lyrics.</li>
+      <li>Use the visible tools to insert a section heading, uppercase text, clean punctuation, or <strong>Load OnSong lyrics</strong> (download-arrow icon). That command loads the matching file from <code>OnSongImports_Text</code> into the editor for review.</li>
+      <li>Select <strong>Save master</strong>, then <strong>Mark reviewed</strong>. A reviewed song moves from the review queue to <code>Working</code>.</li>
+    </ol>
+    <p>The lyric tools now use one compact icon strip. Hover for a description: + inserts a section, Aa uppercases lyrics, the eraser cleans text, the download arrow loads OnSong lyrics, and the curved arrow undoes an edit. Rename and Delete are small icons beside the song title. Save master and Mark reviewed keep labels to distinguish these permanent actions.</p>
+    <p>Delete sends an unused song to the Windows Recycle Bin. A song referenced by a saved service cannot be deleted. Renaming changes the title while keeping the source filename stable. The OnSong command only loads text into the editor; the master changes only after <strong>Save master</strong>.</p>
+  </section>
+  <section>
+    <h2>2. Build a service</h2>
+    <ol>
+      <li>Open <strong>Service Builder</strong> and choose the service type. Sunday AM/PM automatically select the upcoming Sunday and Wednesday selects the upcoming Wednesday. Choose a date manually for Special.</li>
+      <li>In <strong>Choose songs</strong>, select a reviewed song and use <strong>Add to service</strong>.</li>
+      <li>In <strong>Arrange service</strong>, use <strong>Up</strong>, <strong>Down</strong>, and <strong>Remove</strong> to set the running order.</li>
+      <li>In <strong>Prepare details</strong>, choose the category and key. Decide whether the song belongs on the printed cue sheet.</li>
+      <li>Select <strong>Save service</strong>.</li>
+    </ol>
+    <p class="safe note">Planning now references the master song. Adding a song to a service does not move or duplicate the master file.</p>
+  </section>
+  <section>
+    <h2>3. Make service-only adjustments</h2>
+    <p>Service edits are saved when you leave Service Builder or close the program. Save service also saves immediately. A failed save keeps you in the editor so you can resolve it without losing your changes.</p>
+    <p>Use the <strong>Service lyrics</strong> tab for a correction or a different verse order needed only for this service. Use the curved-arrow <strong>Revert to master</strong> icon to discard that override.</p>
+    <p>Use <strong>Leader cues</strong> to edit the condensed reminder lines. The automatic cue shows vocal sections such as Verse, Chorus, Bridge, Outro, Tag, Pre-Chorus, and Refrain followed by their opening words. Intro, Ending, and DELETE placeholder slides are omitted. Vocal section labels, including OUTRO, print in bold. These are reminders for the song leader and vocalists, not a full lyric printout. Existing customized cue lists are preserved. To add automatic OUTRO cues to an older customized list, add them manually or use the <strong>Regenerate cues</strong> icon, which replaces that list with cues from the service lyrics.</p>
+  </section>
+  <section>
+    <h2>4. Print and export</h2>
+    <p>Select <strong>Print cue sheet</strong> in Service Builder to preview the ordered, condensed sheet. Songs with <strong>Include on printed cue sheet</strong> cleared remain in the service but are omitted from the printout.</p>
+    <p>Open <strong>Presentation Export</strong>, load the date and service, then select <strong>Create ProPresenter package</strong>. The app creates numbered text copies plus a <code>Service Guide.md</code> manifest under <code>ProPresenterImports\ServiceExports</code>. Service lyric overrides are used in these copies.</p>
+    <p>Every export creates a new timestamped package. Import only the numbered <code>.txt</code> songs in the newest package. Previous packages remain available. If a master or service changes, the export status asks you to create a new package. Missing or ambiguous source songs block export unless service-only lyrics are available.</p>
+    <p class="safe note">Exports are copies. Master song files are never moved or overwritten. <strong>Mark service complete</strong> records completion without deleting the plan or export.</p>
+  </section>
+  <section>
+    <h2>Storage and recovery</h2>
+    <p>Dated plans are XML files in <code>ServicePlans</code>. Plan and lyric saves use a temporary file; the previous saved version is retained as a <code>.bak</code> file when one exists. Existing legacy service-folder songs remain visible and can be added to new reference-based plans.</p>
+    <p>If a file changed since you opened it, the app refuses to overwrite it and identifies a <code>.pending-...</code> recovery copy of your attempted save. Preserve your work, allow Dropbox to finish syncing, then Reload and reconcile the differences. Failed replacement writes also preserve recovery data; previous contents are backed up before a non-atomic fallback write. Do not rename or delete recovery files until you have checked the saved service.</p>
+    <p>Conflict checks detect updates already visible on this computer; they cannot prevent two offline computers from editing before Dropbox syncs. Coordinate ownership of each service/song and let Dropbox finish before another person begins.</p>
+    <p>A hosted database becomes worthwhile when the team needs simultaneous editing, login-based permissions, audit history, or browser/mobile access. It is not required for this desktop version.</p>
+  </section>
+</main>
+</body>
+</html>
